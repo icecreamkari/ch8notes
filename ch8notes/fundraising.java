@@ -13,10 +13,4 @@ public class fundraising
         
         return total;
     }
-    
-    public static void main(String[] args)
-    {
-        collect(1000);
-        
-    }//end of main
 }

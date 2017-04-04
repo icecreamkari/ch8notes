@@ -2,13 +2,9 @@
 public class gcd
 {
    
-
-    /**
-     * Default constructor for objects of class gcd
-     */
-    public gcd()
-    {
-        
-    }
-
+   public int findGCD(int number1, int number2)
+   {
+       
+       
+   }
 }

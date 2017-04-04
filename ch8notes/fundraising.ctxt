@@ -1,6 +1,4 @@
 #BlueJ class context
 comment0.params=monetaryGoal
 comment0.target=int\ collect(int)
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
+numComments=1

@@ -1,28 +1,34 @@
-
 public class palindrome
 {
-   String word, another;
-   int left, right;
-   
-   public palindrome(String check)
+   //sets initial position to 0
+    int position = 0;
+    boolean same = false;
+
+   public boolean isPalindrome(String sentence)
    {
-       word = check;
-       another = check;
-       left = 0;
-       right =  word.length() - 1;
-   }
-    
-   public boolean isPalindrome(int left, int right)
-   {
-       while(another.equalsIgnoreCase(word))
-       {
-           while (word.charAt(left) == word.charAt(right) && left < right)
-                isPalindrome(left++, right--);
-                
-           if(left < right)
-                return true;
-           else
-                return false;
-        }
+        //deletes all the spaces in the string
+        String nospace = sentence.replaceAll(" ", "");
+        
+        //sets char at front and back
+        char front = nospace.charAt(position);
+        char back = nospace.charAt((nospace.length()-1)-(position));
+        
+        //compares chars to see if they're the same
+        if(front == back)
+        {
+            //if positon overlapped, is a palindrome
+            if (position >= ((nospace.length()-1)))
+            {
+                same = true;
+                return same;
+            }
+            
+            //compares again by calling the method
+            position++;
+            isPalindrome(sentence);
+        }        
+        
+        //if comparison failed, not a palindrome
+        return same;
    }
 }
