@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ init()
+comment0.text=\r\n\ Sets\ up\ the\ basic\ applet\ environment\r\n
+comment1.params=page
+comment1.target=void\ paint(java.awt.Graphics)
+comment1.text=\r\n\ Draws\ a\ Triangle\ using\ polygons\r\n
+comment2.params=xPos\ yPos\ page
+comment2.target=void\ Triangle(int[],\ int[],\ java.awt.Graphics)
+numComments=3
