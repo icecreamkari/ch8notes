@@ -7,4 +7,5 @@ comment1.target=void\ paint(java.awt.Graphics)
 comment1.text=\r\n\ Draws\ a\ Triangle\ using\ polygons\r\n
 comment2.params=xPos\ yPos\ page
 comment2.target=void\ Triangle(int[],\ int[],\ java.awt.Graphics)
+comment2.text=\r\n\ draws\ triangles\r\n
 numComments=3
