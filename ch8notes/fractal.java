@@ -17,7 +17,6 @@ public class fractal extends JApplet
    private int[] xPos = {720, 80, 400, 720};
    private int[] yPos = {600, 600, 40, 600};
 
-
    /**
     * Sets up the basic applet environment
     */
@@ -45,102 +44,46 @@ public class fractal extends JApplet
     */
    public void Triangle(int[] xPos, int[] yPos, Graphics page)
    {
-        //Find the distance between 2 points ex. - x,y & x1,y1
-        double distance = Math.sqrt(Math.pow((xPos[1]-xPos[2]), 2) + Math.pow((yPos[1]-yPos[2]), 2));
-
-
-        if (distance > 10)
+       //Find the distance between 2 points
+       double distance = Math.sqrt(Math.pow((xPos[1]-xPos[2]), 2) + Math.pow((yPos[1]-yPos[2]), 2));
+       
+       if (distance > 2)
         {
-            //middle triangle
-            //calculates the x midpoints
-            int ABMidx = (xPos[0] + xPos[1])/2;
-            int BCMidx = (xPos[1] + xPos[2])/2;
-            int CAMidx = (xPos[2] + xPos[3])/2;
+            //calculates x midpoints
+            int p4x = (xPos[0] + xPos[1])/2;
+            int p5x = (xPos[1] + xPos[2])/2;
+            int p6x = (xPos[2] + xPos[3])/2;
             
             //calculates the y midpoints
-            int ABMidy = (yPos[0] + yPos[1])/2;
-            int BCMidy = (yPos[1] + yPos[2])/2;
-            int CAMidy = (yPos[2] + yPos[3])/2;
-       
-            //creates a new array
-            int[] NxPos = {ABMidx, BCMidx, CAMidx, ABMidx};
-            int[] NyPos = {ABMidy, BCMidy, CAMidy, ABMidy};
+            int p4y = (yPos[0] + yPos[1])/2;
+            int p5y = (yPos[1] + yPos[2])/2;
+            int p6y = (yPos[2] + yPos[3])/2;
             
-            //draws the triangle
-            page.drawPolyline (NxPos, NyPos, NxPos.length);
-            Triangle(NxPos,NyPos,page);
-
-                        
-            //-----------------------------------
+            //creates a new array for right triangle
+            int [] NxPos1 = {xPos[0], p4x, p6x, xPos[0]};
+            int [] NyPos1 = {yPos[0], p4y, p6y, yPos[0]};
             
+            //creates a new array for left triangle
+            int [] NxPos2 = {p4x, xPos[1], p5x, p4x};
+            int [] NyPos2 = {p4y, yPos[1], p5y, p4y};
             
-            //right triangle
-            //calculates the x midpoints            
-            int rABMidx = (xPos[0] + NxPos[0])/2;
-            int rBCMidx = (NxPos[0] + NxPos[2])/2;
-            int rCAMidx = (NxPos[2] + xPos[0])/2;
+            //creates a new array for top triangle
+            int [] NxPos3 = {p6x, p5x, xPos[2], p6x};
+            int [] NyPos3 = {p6y, p5y, yPos[2], p6y};
             
-            //calculates the y midpoints            
-            int rABMidy = (yPos[0] + NyPos[0])/2;
-            int rBCMidy = (NyPos[0] + NyPos[2])/2;
-            int rCAMidy = (NyPos[2] + yPos[0])/2;
-       
-            //creates a new array       
-            int[] RxPos = {rABMidx, rBCMidx, rCAMidx, rABMidx};
-            int[] RyPos = {rABMidy, rBCMidy, rCAMidy, rABMidy};
+            //draws the triangles
+            page.drawPolyline (NxPos1, NyPos1, NxPos1.length);
+            page.drawPolyline (NxPos2, NyPos2, NxPos2.length);
+            page.drawPolyline (NxPos3, NyPos3, NxPos3.length);
             
-            //draws the triangle            
-            page.drawPolyline (RxPos, RyPos, RxPos.length);
-            Triangle(RxPos,RyPos,page);
+            //recursively calls the triangles to keep drawing more triangles
+            Triangle(NxPos1, NyPos1, page);
+            Triangle(NxPos2, NyPos2, page);  
+            Triangle(NxPos3, NyPos3, page);
             
             
-            
-            //-----------------------------------
-            
-            
-            //left triangle
-            //calculates the x midpoints
-            int lABMidx = (NxPos[0] + xPos[1])/2;
-            int lBCMidx = (xPos[1] + NxPos[1])/2;
-            int lCAMidx = (NxPos[1] + NxPos[0])/2;
-            
-            //calculates the y midpoints            
-            int lABMidy = (NyPos[0] + yPos[1])/2;
-            int lBCMidy = (yPos[1] + NyPos[1])/2;
-            int lCAMidy = (NyPos[1] + NyPos[0])/2;
-       
-            //creates a new array       
-            int[] LxPos = {lABMidx, lBCMidx, lCAMidx, lABMidx};
-            int[] LyPos = {lABMidy, lBCMidy, lCAMidy, lABMidy};
-            
-            //draws the triangle            
-            page.drawPolyline (LxPos, LyPos, LxPos.length);
-            Triangle(LxPos,LyPos,page);
-            
-            
-            //-----------------------------------
-            
-            //top triangle
-            //calculates the x midpoints
-            int tABMidx = (NxPos[2] + NxPos[1])/2;
-            int tBCMidx = (NxPos[1] + xPos[2])/2;
-            int tCAMidx = (xPos[2] + NxPos[2])/2;
-            
-            //calculates the y midpoints            
-            int tABMidy = (NyPos[2] + NyPos[1])/2;
-            int tBCMidy = (NyPos[1] + yPos[2])/2;
-            int tCAMidy = (yPos[2] + NyPos[2])/2;
-       
-            //creates a new array       
-            int[] TxPos = {tABMidx, tBCMidx, tCAMidx, tABMidx};
-            int[] TyPos = {tABMidy, tBCMidy, tCAMidy, tABMidy};
-            
-            //draws the triangle            
-            page.drawPolyline (TxPos, TyPos, TxPos.length);
-            Triangle(TxPos,TyPos,page);
         }
+   }
+   
+}//end of Triangle
 
-
-
-   }//end of Triangle
-}
